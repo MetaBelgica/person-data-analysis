@@ -1,0 +1,54 @@
+{
+  "datePatterns": ["%Y", "(%Y)", "[%Y]", "%Y-%m-%d", "%Y--%m-%d", "%Y--%m--%d", "%d/%m/%Y", "%Y/%m/%d", "%Y%m%d", "%Y----", "%Y.%m.%d", "%d.%m.%Y"],
+  "recordTag": "record",
+  "recordIDExpression": "./priref[@tag=\"%0\"]",
+  "recordIDPrefix": "kik-irpa|",
+  "recordIDColumnName": "autID",
+  "recordFilter": {
+    "expression": "./name.status/value[@lang=\"neutral\"]",
+    "condition": "equals",
+    "value": "1"
+  },
+  "dataFields": [
+    {
+      "columnName": "isni",
+      "expression": "./PIDother/PID_other.source/value[text()=\"ISNI\"]/../../PID_other.non-URI_ID",
+      "valueType": "text"
+    },
+    {
+      "columnName": "name",
+      "expression": "./name/value[@lang=\"en-GB\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "alternateNames",
+      "expression": "./used_for/value[@lang=\"en-GB\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "birthDate",
+      "expression": "./birth.date.start",
+      "valueType": "date",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "deathDate",
+      "expression": "./death.date.start",
+      "valueType": "date",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "birthPlace",
+      "expression": "./birth.place/value[@lang=\"en-GB\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "deathPlace",
+      "expression": "./death.place/value[@lang=\"en-GB\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    }
+
+  ]
+}

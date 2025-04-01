@@ -1,0 +1,70 @@
+{
+  "datePatterns": ["%Y", "(%Y)", "[%Y]", "%Y-%m-%d", "%d/%m/%Y", "%Y%m%d"],
+  "recordTagString": "record",
+  "recordTag": "marc:record",
+  "recordIDExpression": "./marc:controlfield[@tag=\"001\"]",
+  "recordIDPrefix": "kbr|",
+  "recordIDColumnName": "autID",
+  "dataDelimiter": ";",
+  "execution": {
+    "byteChunkSize": "1000000",
+    "recordBatchSize": "40000"
+  },
+  "dataFields": [
+    {
+      "columnName": "name",
+      "expression": "./marc:datafield[@tag=\"100\"]/marc:subfield[@code=\"a\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "alternateNames",
+      "expression": "./marc:datafield[@tag=\"400\"]/marc:subfield[@code=\"a\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "pseudonyms",
+      "expression": "./marc:datafield[@tag=\"500\"]/marc:subfield[@code=\"a\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "dates100d",
+      "expression": "./marc:datafield[@tag=\"100\"]/marc:subfield[@code=\"d\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "birthDate",
+      "expression": "./marc:datafield[@tag=\"046\"]/marc:subfield[@code=\"f\"]",
+      "valueType": "date",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "deathDate",
+      "expression": "./marc:datafield[@tag=\"046\"]/marc:subfield[@code=\"g\"]",
+      "valueType": "date",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "birthPlace",
+      "expression": "./marc:datafield[@tag=\"370\"]/marc:subfield[@code=\"a\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "deathPlace",
+      "expression": "./marc:datafield[@tag=\"370\"]/marc:subfield[@code=\"b\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "isni",
+      "expression": "./marc:datafield[@tag=\"024\"]/marc:subfield[@code=\"2\" and (text()=\"isni\" or text()=\"ISNI\")]/../marc:subfield[@code=\"a\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "viaf",
+      "expression": "./marc:datafield[@tag=\"024\"]/marc:subfield[@code=\"2\" and (text()=\"viaf\" or text()=\"VIAF\")]/../marc:subfield[@code=\"a\"]",
+      "valueType": "text"
+    }
+  ]
+}
+

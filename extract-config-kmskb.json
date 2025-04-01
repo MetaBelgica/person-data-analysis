@@ -1,0 +1,55 @@
+{
+  "datePatterns": ["%Y", "(%Y)", "[%Y]", "%Y-%m-%d", "%d/%m/%Y", "%Y%m%d"],
+  "recordTag": "record",
+  "recordIDExpression": "./controlfield[@tag=\"001\"]",
+  "recordIDPrefix": "kmskb|",
+  "recordIDColumnName": "autID",
+  "dataFields": [
+    {
+      "columnName": "name",
+      "expression": "./datafield[@tag=\"100\"]/subfield[@code=\"01\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "nameComponents",
+      "expression": "./datafield[@tag=\"110\"]",
+      "valueType": "json",
+      "subfields": [
+         {
+           "columnName": "lastName",
+           "expression": "./subfield[@code=\"01\"]",
+           "valueType": "text"
+         },
+         {
+           "columnName": "firstName",
+           "expression": "./subfield[@code=\"02\"]",
+           "valueType": "text"
+         }
+      ]
+    },
+    {
+      "columnName": "birthDate",
+      "expression": "./datafield[@tag=\"200\"]/subfield[@code=\"01\"]",
+      "valueType": "date",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "deathDate",
+      "expression": "./datafield[@tag=\"200\"]/subfield[@code=\"02\"]",
+      "valueType": "date",
+      "keepOriginal": "true"
+      
+    },
+    {
+      "columnName": "birthPlace",
+      "expression": "./datafield[@tag=\"300\"]/subfield[@code=\"01\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "deathPlace",
+      "expression": "./datafield[@tag=\"400\"]/subfield[@code=\"01\"]",
+      "valueType": "text"
+    }
+  ]
+}
+

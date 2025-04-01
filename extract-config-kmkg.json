@@ -1,0 +1,87 @@
+{
+  "datePatterns": ["%Y", "(%Y)", "[%Y]", "%Y-%m-%d", "%d/%m/%Y", "%Y%m%d"],
+  "recordTag": "Person",
+  "recordIDExpression": "./ID",
+  "recordIDColumnName": "autID",
+  "recordIDPrefix": "kmkg|",
+  "dataFields": [
+    {
+      "columnName": "isni",
+      "expression": "./URLList/URL/TypeURL[text()=\"ISNI\"]/../URL",
+      "valueType": "isniURL"
+    },
+    {
+      "columnName": "bnf",
+      "expression": "./URLList/URL/TypeURL[text()=\"BNF\"]/../URL",
+      "valueType": "bnfURL"
+    },
+    {
+      "columnName": "name",
+      "expression": "./NomsList/Noms/Typenom[text()=\"Nom original\"]/../Nom",
+      "valueType": "text"
+    },
+    {
+      "columnName": "alternateNames",
+      "expression": "./NomsList/Noms/Typenom[starts-with(text(),\"Terme\")]/../Nom",
+      "valueType": "text"
+    },
+    {
+      "columnName": "gender",
+      "expression": "./Sexe",
+      "valueType": "text"
+    },
+    {
+      "columnName": "nationality",
+      "expression": "./Pays",
+      "valueType": "text"
+    },
+    {
+      "columnName": "birthDate",
+      "expression": "./DatesList/Dates/Typedate[text()=\"Date de naissance\"]/../Datation",
+      "keepOriginal": "true",
+      "valueType": "date"
+    },
+    {
+      "columnName": "deathDate",
+      "expression": "./DatesList/Dates/Typedate[text()=\"Date de mort\"]/../Datation",
+      "keepOriginal": "true",
+      "valueType": "date"
+    },
+    {
+      "columnName": "birthPlace",
+      "expression": "./DatesList/Dates/Typedate[text()=\"Date de naissance\"]/..",
+      "valueType": "json",
+      "subfields": [
+         {
+           "columnName": "birthTown",
+           "expression": "./Lieu",
+           "valueType": "text"
+         },
+         {
+           "columnName": "birthCountry",
+           "expression": "./Pays",
+           "valueType": "text"
+         }
+      ]
+    },
+    {
+      "columnName": "deathPlace",
+      "expression": "./DatesList/Dates/Typedate[text()=\"Date de mort\"]/..",
+      "valueType": "json",
+      "subfields": [
+         {
+           "columnName": "deathTown",
+           "expression": "./Lieu",
+           "valueType": "text"
+         },
+         {
+           "columnName": "deathCountry",
+           "expression": "./Pays",
+           "valueType": "text"
+         }
+      ]
+
+    }
+
+  ]
+}
