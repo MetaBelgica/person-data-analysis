@@ -17,7 +17,11 @@ def main(inputFilename, outputFilename, splitColumnName, placeColumnName, countr
 
     inputReader = csv.DictReader(inFile)
 
-    outputFieldnames = [placeColumnName, countryColumnName ] + otherColumns
+    if otherColumns:
+      outputFieldnames = [placeColumnName, countryColumnName ] + otherColumns
+    else:
+      outputFieldnames = [placeColumnName, countryColumnName ]
+
     outputWriter = csv.DictWriter(outFile, fieldnames=outputFieldnames, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     outputWriter.writeheader()
@@ -41,7 +45,10 @@ def main(inputFilename, outputFilename, splitColumnName, placeColumnName, countr
           placename = getPlaceName(placename, delimiterPair=delimiterPair)
           countryName = getCountryName(valueString, delimiterPair=delimiterPair)
 
-          outputRow = {k:v for k,v in row.items() if k in otherColumns}
+          if otherColumns:
+            outputRow = {k:v for k,v in row.items() if k in otherColumns}
+          else:
+            outputRow = {}
           outputRow[placeColumnName] = placename
           outputRow[countryColumnName] = countryName
           outputWriter.writerow(outputRow)
@@ -156,7 +163,7 @@ def parseArguments():
   parser.add_argument('-p', '--placename-column', action='store', required=True, help='The name of the column in which the place name should be stored in the output CSV')
   parser.add_argument('-c', '--countryname-column', action='store', required=True, help='The name of the column in which the country name should be stored in the output CSV')
   parser.add_argument('-o', '--output-file', action='store', required=True, help='The output CSV file containing descriptive keys based on the key composition config')
-  parser.add_argument('--other-column', action='append', required=True, help='Names of additional columns that should be added to the output')
+  parser.add_argument('--other-column', action='append', help='Names of additional columns that should be added to the output')
   parser.add_argument('-d', '--delimiter-pair', nargs=2, metavar=('opening', 'closing'), default=('(', ')'), required=False, help='The opening and closing character for the country part of the string, e.g. ( and ) for Gent (Belgium) or [ and ] for Gent [Belgium]')
   parser.add_argument('-l', '--log-file', action='store', help='The optional name of the logfile')
   parser.add_argument('-L', '--log-level', action='store', default='INFO', help='The log level, default is INFO')
