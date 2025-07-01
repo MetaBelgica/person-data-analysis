@@ -49,6 +49,21 @@
       "columnName": "deathPlace",
       "expression": "./datafield[@tag=\"400\"]/subfield[@code=\"01\"]",
       "valueType": "text"
+    },
+    {
+      "columnName": "nationality",
+      "expression": "./datafield[@tag=\"100\"]/subfield[@code=\"07\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "role",
+      "expression": "./datafield[@tag=\"100\"]/subfield[@code=\"08\"]",
+      "valueType": "text"
+    },
+    {
+      "columnName": "gender",
+      "expression": "./datafield[@tag=\"100\"]/subfield[@code=\"05\"]",
+      "valueType": "text"
     }
   ]
 }

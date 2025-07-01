@@ -48,6 +48,24 @@
       "expression": "./death.place/value[@lang=\"en-GB\"]",
       "valueType": "text",
       "keepOriginal": "true"
+    },
+    {
+      "columnName": "role",
+      "expression": "./name.type/value[@lang=\"0\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "nationality",
+      "expression": "./nationality/value[@lang=\"en-GB\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
+    },
+    {
+      "columnName": "gender",
+      "expression": "./gender/value[@lang=\"en-GB\"]",
+      "valueType": "text",
+      "keepOriginal": "true"
     }
 
   ]
