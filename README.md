@@ -1,4 +1,5 @@
 # Person-data-analysis
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15120908.svg)](https://doi.org/10.5281/zenodo.15120908)
 This repository contains a Jupyter notebook and related helper scripts to analyze authority data of the MetaBelgica partner institutions. It is related to deliverable Deliverable 1.2.2 - Quality requirements and categories of Belgian entities. MetaBelgica. https://doi.org/10.5281/zenodo.14974410  
 
 ## Run the notebook from the command line
@@ -32,4 +33,4 @@ jupyter notebook
 - **Code**: Licensed under the [MIT License](LICENSE).
 - **Figures & Text**: Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0).
 
-When citing this notebook, please use the provided DOI: todo, add after DOI is retrieved after first release
+When citing this notebook, please use the provided DOI: https://doi.org/10.5281/zenodo.15120909 (version 0.1.0)

@@ -6,5 +6,6 @@ authors:
   orcid: "https://orcid.org/0000-0002-7304-3787"
 title: "MetaBelgica - Person data analysis"
 version: 0.1.0
+doi: 10.5281/zenodo.15120909
 date-released: 2025-04-01
 url: "https://github.com/metabelgica/person-data-analysis"
