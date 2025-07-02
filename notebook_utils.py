@@ -552,6 +552,18 @@ def plotDatePatternsPercentagesBAK(percentage_data, title_prefix, is_percentage=
   if save_path_png:
     fig.savefig(save_path_png, format='png', dpi=300)
 
+# -----------------------------------------------------------------------------
+def count_multiple_assignments(df, column_name):
+    result = (
+        df.groupby([df.index, 'dataSource'])[column_name]
+        .nunique()
+        .reset_index(name=f'unique_{column_name}_count')
+        .query(f'unique_{column_name}_count > 1')
+        .sort_values(f'unique_{column_name}_count', ascending=False)
+        .set_index('autID')
+    )
+    return result
+
 
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
