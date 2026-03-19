@@ -17,12 +17,12 @@
     },
     {
       "columnName": "name",
-      "expression": "./name/value[@lang=\"en-GB\"]",
+      "expression": "(./name/value[@lang=\"nl-BE\"] | ./name/value[lang=\"fr-BE\"])[1]",
       "valueType": "text"
     },
     {
       "columnName": "alternateNames",
-      "expression": "./used_for/value[@lang=\"en-GB\"]",
+      "expression": "(./used_for/value[@lang=\"nl-BE\"] | ./used_for/value[@lang=\"fr-BE\"])[1]",
       "valueType": "text"
     },
     {
@@ -39,13 +39,13 @@
     },
     {
       "columnName": "birthPlace",
-      "expression": "./birth.place/value[@lang=\"en-GB\"]",
+      "expression": "(./birth.place/value[@lang=\"nl-BE\"] | ./birth.place/value[@lang=\"fr-BE\"])[1]",
       "valueType": "text",
       "keepOriginal": "true"
     },
     {
       "columnName": "deathPlace",
-      "expression": "./death.place/value[@lang=\"en-GB\"]",
+      "expression": "(./death.place/value[@lang=\"nl-BE\"] | ./death.place/value[@lang=\"nl-BE\"])[1]",
       "valueType": "text",
       "keepOriginal": "true"
     },
@@ -57,13 +57,13 @@
     },
     {
       "columnName": "nationality",
-      "expression": "./nationality/value[@lang=\"en-GB\"]",
+      "expression": "./nationality/value[@lang=\"fr-BE\"]",
       "valueType": "text",
       "keepOriginal": "true"
     },
     {
       "columnName": "gender",
-      "expression": "./gender/value[@lang=\"en-GB\"]",
+      "expression": "(./gender/value[@lang=\"nl-BE\"] | ./gender/value[@lang=\"nl-BE\"])[1]",
       "valueType": "text",
       "keepOriginal": "true"
     }
