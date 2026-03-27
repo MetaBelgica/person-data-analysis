@@ -552,7 +552,7 @@ def preprocessISBNString(inputISBN):
   ''
   """
 
-  inputISBNNorm = re.sub('\D', '', inputISBN)
+  inputISBNNorm = re.sub(r'\D', '', inputISBN)
 
   if len(inputISBNNorm) == 0:
     return ''

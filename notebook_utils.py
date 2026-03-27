@@ -7,6 +7,7 @@ import json
 
 UNCERTAIN_CHARACTERS = ['[', '?', '~', '%', 'X', '{']
 
+# -----------------------------------------------------------------------------
 def isCertainEDTFDate(value):
     if pd.isna(value):
         return np.nan
@@ -18,6 +19,7 @@ def isCertainEDTFDate(value):
     else:
         return False
     
+# -----------------------------------------------------------------------------
 def getDatePrecision(value):
     if pd.isna(value) or value == '':
         return 'no_date'
@@ -31,6 +33,16 @@ def getDatePrecision(value):
         return 'year'
     else:
         return 'unknown'
+
+# -----------------------------------------------------------------------------
+def clean_empty_lists(x):
+    if isinstance(x, list):
+        # remove empty/whitespace-only strings
+        cleaned = [v for v in x if str(v).strip() != ""]
+        if len(cleaned) == 0:
+            return np.nan
+        return cleaned
+    return x
 
 # -----------------------------------------------------------------------------
 def compute_totals(df, config):
