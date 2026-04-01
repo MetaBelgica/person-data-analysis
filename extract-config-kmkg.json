@@ -16,6 +16,26 @@
       "valueType": "bnfURL"
     },
     {
+      "columnName": "ulan",
+      "expression": "./URLList/URL/TypeURL[text()=\"ULAN\"]/../URL",
+      "valueType": "text"
+    },
+    {
+      "columnName": "wikipedia",
+      "expression": "./URLList/URL/TypeURL[text()=\"Vue web\"]/../URL",
+      "valueType": "text"
+    },
+    {
+      "columnName": "website",
+      "expression": "./URLList/URL/TypeURL[text()=\"Autre site\"]/../URL",
+      "valueType": "text"
+    },
+    {
+      "columnName": "loc",
+      "expression": "./URLList/URL/TypeURL[text()=\"LCNACO\"]/../URL",
+      "valueType": "text"
+    },
+    {
       "columnName": "name",
       "expression": "./NomsList/Noms/Typenom[text()=\"Nom original\"]/../Nom",
       "valueType": "text"
