@@ -8,6 +8,14 @@ import json
 UNCERTAIN_CHARACTERS = ['[', '?', '~', '%', 'X', '{']
 
 # -----------------------------------------------------------------------------
+def mergeListValues(old, new):
+  old_list = old if isinstance(old, list) else []
+
+  if pd.notna(new) and str(new) not in old_list:
+      return old_list + [str(new)]
+  return old_list
+
+# -----------------------------------------------------------------------------
 def isCertainEDTFDate(value):
     if pd.isna(value):
         return np.nan
@@ -238,16 +246,44 @@ def markDates100dType(df, dateColumn, valueColumn, otherValueColumn, problemColu
     ] = 'certain'
 
 # -----------------------------------------------------------------------------
-def extractCompleteName(value):
-    lastNames = set()
-    firstNames = set()
-    if isinstance(value, list):
-        for v in value:
-            lastNames.update([n for n in v['lastName'].split(';')])
-            firstNames.update([n for n in v['firstName'].split(';')])
-        return ';'.join(lastNames) + ', ' + ';'.join(firstNames)
-    else:
+def extractCompleteName(value, asList=False):
+    if not isinstance(value, list):
         return np.nan
+
+    names = []
+
+    for v in value:
+        lasts = (v.get('lastName') or '').split(';')
+        firsts = (v.get('firstName') or '').split(';')
+
+        # normalize lengths
+        max_len = max(len(lasts), len(firsts))
+        lasts += [''] * (max_len - len(lasts))
+        firsts += [''] * (max_len - len(firsts))
+
+        for l, f in zip(lasts, firsts):
+            l = l.strip()
+            f = f.strip()
+
+            if l and f:
+                names.append(f"{l}, {f}")
+            elif l:
+                names.append(l)
+            elif f:
+                names.append(f)
+
+    return names if asList else '; '.join(names)
+
+#    lastNames = set()
+#    firstNames = set()
+#    if isinstance(value, list):
+#        for v in value:
+#            lastNames.update([n for n in v['lastName'].split(';')])
+#            firstNames.update([n for n in v['firstName'].split(';')])
+#        return ';'.join(lastNames) + ', ' + ';'.join(firstNames)
+#    else:
+#        return np.nan
+#
 
 # -----------------------------------------------------------------------------
 def replacePlaceholderValues(df, column, regexList):
