@@ -4,6 +4,10 @@
   "recordIDExpression": "./controlfield[@tag=\"001\"]",
   "recordIDPrefix": "kmskb|",
   "recordIDColumnName": "autID",
+  "recordFilter": {
+    "expression": "./datafield[@tag=\"500\"]",
+    "condition": "NotExist"
+  },
   "dataFields": [
     {
       "columnName": "name",
@@ -26,6 +30,11 @@
            "valueType": "text"
          }
       ]
+    },
+    {
+      "columnName": "alternateNames",
+      "expression": "./datafield[@tag=\"600\"]/subfield[@code=\"01\"]",
+      "valueType": "text"
     },
     {
       "columnName": "birthDate",
