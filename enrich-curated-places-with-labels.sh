@@ -42,6 +42,40 @@ echo ""
 #  --lang EN \
 #  -c country.code=countryCode name=correctIDsName
 
+python enrich_columns_from_geonames.py \
+  kik-irpa/enriched/reconciled_birth-place.csv \
+  -o kik-irpa/enriched/reconciled_birth-place_enriched.csv \
+  -g correctIDs \
+  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
+  --lang EN \
+  -c country.code=countryCode name=correctIDsName
+
+python enrich_columns_from_geonames.py \
+  kik-irpa/enriched/reconciled_death-place.csv \
+  -o kik-irpa/enriched/reconciled_death-place_enriched.csv \
+  -g correctIDs \
+  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
+  --lang EN \
+  -c country.code=countryCode name=correctIDsName
+
+
+
+python enrich_columns_from_geonames.py \
+  kik-irpa/enriched/2026-05-06_birth-place_benoit.csv \
+  -o kik-irpa/enriched/2026-05-06_birth-place_benoit_enriched.csv \
+  -g correctIDs \
+  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
+  --lang EN \
+  -c country.code=countryCode name=correctIDsName
+
+python enrich_columns_from_geonames.py \
+  kik-irpa/enriched/2026-05-06_death-place_benoit.csv \
+  -o kik-irpa/enriched/2026-05-06_death-place_benoit_enriched.csv \
+  -g correctIDs \
+  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
+  --lang EN \
+  -c country.code=countryCode name=correctIDsName
+
 
 #
 # KMKG
@@ -73,11 +107,11 @@ echo ""
 #  --lang EN \
 #  -c country.code=countryCode name=correctIDsName
 
-python enrich_columns_from_geonames.py \
-  "kmkg/enriched/kmkg-data-deathPlace-No API response_Marianne.csv" \
-  -o kmkg/enriched/death_places_label_enriched_Marianne.csv \
-  -g correctIDs \
-  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
-  --lang EN \
-  -c country.code=countryCode name=correctIDsName
+#python enrich_columns_from_geonames.py \
+#  "kmkg/enriched/kmkg-data-deathPlace-No API response_Marianne.csv" \
+#  -o kmkg/enriched/death_places_label_enriched_Marianne.csv \
+#  -g correctIDs \
+#  --api-endpoint https://beltrans2.kbr.be/geonames-lookup/place \
+#  --lang EN \
+#  -c country.code=countryCode name=correctIDsName
 

@@ -32,17 +32,18 @@ def main(inputFilename, outputFilename, geonamesIdColumn, columnFieldPairs, lang
     for row in inputReader:
 
       geonamesIdValue = row[geonamesIdColumn]
-      geonamesIds = geonamesIdValue.split(';') if ';' in geonamesIdValue else [geonamesIdValue]
+      if geonamesIdValue != '':
+        geonamesIds = geonamesIdValue.split(';') if ';' in geonamesIdValue else [geonamesIdValue]
 
-      valueList = []
-      for geonamesId in geonamesIds:
-        values = getGeoNamesFields(apiUrl, geonamesId, columnFieldPairs, lang)
-        if values:
-          valueList.append(values)
+        valueList = []
+        for geonamesId in geonamesIds:
+          values = getGeoNamesFields(apiUrl, geonamesId, columnFieldPairs, lang)
+          if values:
+            valueList.append(values)
 
-      if valueList:
-        newRowData = { key: ';'.join(d[key] for d in valueList) for key in valueList[0]}
-        row.update(newRowData)
+        if valueList:
+          newRowData = { key: ';'.join(d[key] for d in valueList) for key in valueList[0]}
+          row.update(newRowData)
 
       outputWriter.writerow(row)
 

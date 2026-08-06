@@ -218,12 +218,15 @@ def markDates100dType(df, dateColumn, valueColumn, otherValueColumn, problemColu
 
     # no 046 date, but a problem
     # not specifically a problem while splitting, but something is wrong with the date
+    # 2026-08-05: When checking <4, regular dates before the year 1000 are marked wrong
     df.loc[
         (df[dateColumn].isna()) # no 046 date
-        & (df[valueColumn].notna())
-        & (df[valueColumn].str.len() < 4),
+        & (df[problemColumn].isna()) # no obvious split problem
+        & (df[valueColumn].notna()) # some date was extracted
+        & (df[valueColumn].str.len() < 3), # not semantically correct, but it does the job (rule below would also match dates like "16", which often are not 16, but 16XX)
+        #& (~df[valueColumn].astype(str).str.fullmatch(r"-?\d+")),
         typeColumn
-    ] = 'splitProblem'
+    ] = 'notSureIfDate'
  
     
     # no 046 date, but we have a 100$d date which is uncertain
@@ -239,7 +242,8 @@ def markDates100dType(df, dateColumn, valueColumn, otherValueColumn, problemColu
     df.loc[
         (df[dateColumn].isna()) # no 046 date
         & (df[valueColumn].notna()) # a 100$d date component
-        & (df[valueColumn].str.len() >=4) # a reasonable certain date value
+        & (df[valueColumn].str.len() >= 3) # not semantically correct, but it does the job (rule below would also match dates like "16", which often are not 16, but 16XX)
+        #& (df[valueColumn].astype(str).str.fullmatch(r"-?\d+")) # a reasonable certain date value
         & (df[problemColumn].isna()) # no obvious problem while splitting 100$d
         & (~uncertainDateMask), # certain date
         typeColumn
@@ -474,7 +478,7 @@ def plotBarChart(df, x_column, group_column=None, title="Bar Chart", log_scale=F
 def plotDecade(decade_counts, title_prefix, min_decade, max_decade=2100):
 
   plt.figure(figsize=(14, 8))
-  beginCentury = str(min_decade)[:2]
+  beginCentury = str(min_decade)[:2] if len(str(min_decade)) > 3 else str(min_decade)[:1]
   endCentury = str(max_decade)[:2]
 
   if max_decade < 2100:
